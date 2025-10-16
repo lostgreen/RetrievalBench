@@ -1,0 +1,228 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/D52rTzibFRc.mp4",
+  "video_name": "D52rTzibFRc",
+  "fps": 24.0,
+  "sample_rate": 1.0,
+  "frame_count": 2244,
+  "duration": 93.5,
+  "width": 640,
+  "height": 360,
+  "sampled_frame_indices": [
+    0,
+    24,
+    48,
+    72,
+    96,
+    120,
+    144,
+    168,
+    192,
+    216,
+    240,
+    264,
+    288,
+    312,
+    336,
+    360,
+    384,
+    408,
+    432,
+    456,
+    480,
+    504,
+    528,
+    552,
+    576,
+    600,
+    624,
+    648,
+    672,
+    696,
+    720,
+    744,
+    768,
+    792,
+    816,
+    840,
+    864,
+    888,
+    912,
+    936,
+    960,
+    984,
+    1008,
+    1032,
+    1056,
+    1080,
+    1104,
+    1128,
+    1152,
+    1176,
+    1200,
+    1224,
+    1248,
+    1272,
+    1296,
+    1320,
+    1344,
+    1368,
+    1392,
+    1416,
+    1440,
+    1464,
+    1488,
+    1512,
+    1536,
+    1560,
+    1584,
+    1608,
+    1632,
+    1656,
+    1680,
+    1704,
+    1728,
+    1752,
+    1776,
+    1800,
+    1824,
+    1848,
+    1872,
+    1896,
+    1920,
+    1944,
+    1968,
+    1992,
+    2016,
+    2040,
+    2064,
+    2088,
+    2112,
+    2136,
+    2160,
+    2184,
+    2208,
+    2232
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 0,
+      "start_frame_sample": 0,
+      "end_frame_sample": 0,
+      "score": 54.50099690072247,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    },
+    {
+      "start_frame": 24,
+      "end_frame": 120,
+      "start_frame_sample": 1,
+      "end_frame_sample": 5,
+      "score": 1754.8992693474918,
+      "representative_frame": {
+        "index": 24,
+        "sample_index": 1,
+        "timestamp": 1.0
+      }
+    },
+    {
+      "start_frame": 144,
+      "end_frame": 480,
+      "start_frame_sample": 6,
+      "end_frame_sample": 20,
+      "score": 31.888535891127994,
+      "representative_frame": {
+        "index": 144,
+        "sample_index": 6,
+        "timestamp": 6.0
+      }
+    },
+    {
+      "start_frame": 504,
+      "end_frame": 504,
+      "start_frame_sample": 21,
+      "end_frame_sample": 21,
+      "score": 8497.353437025107,
+      "representative_frame": {
+        "index": 504,
+        "sample_index": 21,
+        "timestamp": 21.0
+      }
+    },
+    {
+      "start_frame": 528,
+      "end_frame": 528,
+      "start_frame_sample": 22,
+      "end_frame_sample": 22,
+      "score": 38.66878394559197,
+      "representative_frame": {
+        "index": 528,
+        "sample_index": 22,
+        "timestamp": 22.0
+      }
+    },
+    {
+      "start_frame": 552,
+      "end_frame": 552,
+      "start_frame_sample": 23,
+      "end_frame_sample": 23,
+      "score": 42.52270346044068,
+      "representative_frame": {
+        "index": 552,
+        "sample_index": 23,
+        "timestamp": 23.0
+      }
+    },
+    {
+      "start_frame": 576,
+      "end_frame": 816,
+      "start_frame_sample": 24,
+      "end_frame_sample": 34,
+      "score": 39.431842695313414,
+      "representative_frame": {
+        "index": 576,
+        "sample_index": 24,
+        "timestamp": 24.0
+      }
+    },
+    {
+      "start_frame": 840,
+      "end_frame": 1224,
+      "start_frame_sample": 35,
+      "end_frame_sample": 51,
+      "score": 254.10290768313604,
+      "representative_frame": {
+        "index": 840,
+        "sample_index": 35,
+        "timestamp": 35.0
+      }
+    },
+    {
+      "start_frame": 1248,
+      "end_frame": 1872,
+      "start_frame_sample": 52,
+      "end_frame_sample": 78,
+      "score": 87.16058953704665,
+      "representative_frame": {
+        "index": 1248,
+        "sample_index": 52,
+        "timestamp": 52.0
+      }
+    },
+    {
+      "start_frame": 1896,
+      "end_frame": 2232,
+      "start_frame_sample": 79,
+      "end_frame_sample": 93,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 1896,
+        "sample_index": 79,
+        "timestamp": 79.0
+      }
+    }
+  ]
+}

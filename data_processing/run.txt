@@ -1,0 +1,14 @@
+python -m data_processing.pipeline \
+  --video-dir /data5/zgw/video_datasets/Video-MME/videos \
+  --output-dir output/videomme_batch \
+  --frame-rate 1.0 \
+  --threshold 30 \
+  --strategy first
+
+
+python -m data_processing.pipeline \
+  --video /data5/zgw/video_datasets/Video-MME/videos/-3t1rj8g6yg.mp4 \
+  --output-dir output/videomme_batch \
+  --frame-rate 1.0 \
+  --threshold 30 \
+  --strategy first

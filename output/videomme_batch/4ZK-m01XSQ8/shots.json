@@ -1,0 +1,89 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/4ZK-m01XSQ8.mp4",
+  "video_name": "4ZK-m01XSQ8",
+  "fps": 30.0,
+  "sample_rate": 1.0,
+  "frame_count": 1156,
+  "duration": 38.53333333333333,
+  "width": 1280,
+  "height": 720,
+  "sampled_frame_indices": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330,
+    360,
+    390,
+    420,
+    450,
+    480,
+    510,
+    540,
+    570,
+    600,
+    630,
+    660,
+    690,
+    720,
+    750,
+    780,
+    810,
+    840,
+    870,
+    900,
+    930,
+    960,
+    990,
+    1020,
+    1050,
+    1080,
+    1110,
+    1140
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 0,
+      "start_frame_sample": 0,
+      "end_frame_sample": 0,
+      "score": 948.2686111763481,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    },
+    {
+      "start_frame": 30,
+      "end_frame": 960,
+      "start_frame_sample": 1,
+      "end_frame_sample": 32,
+      "score": 97.81692219408714,
+      "representative_frame": {
+        "index": 30,
+        "sample_index": 1,
+        "timestamp": 1.0
+      }
+    },
+    {
+      "start_frame": 990,
+      "end_frame": 1140,
+      "start_frame_sample": 33,
+      "end_frame_sample": 38,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 990,
+        "sample_index": 33,
+        "timestamp": 33.0
+      }
+    }
+  ]
+}

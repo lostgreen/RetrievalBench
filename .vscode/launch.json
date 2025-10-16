@@ -1,0 +1,71 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug VideoTree Pipeline",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "/opt/conda/envs/retrieval-bench/bin/python",
+      "program": "${workspaceFolder}/VideoTree(Failed)/videotree_pipeline.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "args": [
+                "--dataset", "videomme",
+                "--data_path", "runs/captions.json",
+                "--anno_path", "/data5/zgw/video_datasets/Video-MME/videomme/videomme_question.json",
+                "--duration_path", "runs/captions_meta.json",
+                "--captions_meta_path", "runs/captions_meta.json",
+                "--frame_feat_path", "runs/frame_features",
+                "--frames_root", "runs/frames",
+                "--output_root", "runs/videotree",
+                "--prompt_type", "cap_score",
+                "--num_examples_to_run", "1",
+                "--video_ids=-3t1rj8g6yg",
+                "--visualize"
+      ],
+    },
+    {
+      "name": "Run Shot Pipeline (Video-MME sample)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "/opt/conda/envs/retrieval-bench/bin/python",
+      "module": "data_processing.pipeline",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "args": [
+        "--video",
+        "/data5/zgw/video_datasets/Video-MME/videos/-3t1rj8g6yg.mp4",
+        "--output-dir",
+        "${workspaceFolder}/output/videomme_sample",
+        "--frame-rate",
+        "1.0",
+        "--threshold",
+        "30",
+        "--strategy",
+        "first"
+      ]
+    },
+    {
+      "name": "Run Evaluate Pipeline",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "/opt/conda/envs/retrieval-bench/bin/python",
+      "module": "evaluate.evaluate_pipeline",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "args": [
+        "--shots-root",
+        "${workspaceFolder}/output/videomme_batch",
+      ]
+    }
+  ]
+}

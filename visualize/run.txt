@@ -1,0 +1,1 @@
+python -m visualize.render_shots output/videomme_batch/-3t1rj8g6yg/shots.json --output output/videomme_batch/-3t1rj8g6yg

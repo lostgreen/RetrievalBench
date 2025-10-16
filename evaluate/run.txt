@@ -1,0 +1,1 @@
+python -m evaluate.evaluate_pipeline --shots-root output/videomme_batch --model-name apibank-simulated

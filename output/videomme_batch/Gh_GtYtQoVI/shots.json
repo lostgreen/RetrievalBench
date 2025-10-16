@@ -1,0 +1,244 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/Gh_GtYtQoVI.mp4",
+  "video_name": "Gh_GtYtQoVI",
+  "fps": 25.0,
+  "sample_rate": 1.0,
+  "frame_count": 2146,
+  "duration": 85.84,
+  "width": 1280,
+  "height": 720,
+  "sampled_frame_indices": [
+    0,
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250,
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500,
+    525,
+    550,
+    575,
+    600,
+    625,
+    650,
+    675,
+    700,
+    725,
+    750,
+    775,
+    800,
+    825,
+    850,
+    875,
+    900,
+    925,
+    950,
+    975,
+    1000,
+    1025,
+    1050,
+    1075,
+    1100,
+    1125,
+    1150,
+    1175,
+    1200,
+    1225,
+    1250,
+    1275,
+    1300,
+    1325,
+    1350,
+    1375,
+    1400,
+    1425,
+    1450,
+    1475,
+    1500,
+    1525,
+    1550,
+    1575,
+    1600,
+    1625,
+    1650,
+    1675,
+    1700,
+    1725,
+    1750,
+    1775,
+    1800,
+    1825,
+    1850,
+    1875,
+    1900,
+    1925,
+    1950,
+    1975,
+    2000,
+    2025,
+    2050,
+    2075,
+    2100,
+    2125
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 200,
+      "start_frame_sample": 0,
+      "end_frame_sample": 8,
+      "score": 1366.3385339026881,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    },
+    {
+      "start_frame": 225,
+      "end_frame": 375,
+      "start_frame_sample": 9,
+      "end_frame_sample": 15,
+      "score": 7302.759017163194,
+      "representative_frame": {
+        "index": 225,
+        "sample_index": 9,
+        "timestamp": 9.0
+      }
+    },
+    {
+      "start_frame": 400,
+      "end_frame": 525,
+      "start_frame_sample": 16,
+      "end_frame_sample": 21,
+      "score": 39.06808679315262,
+      "representative_frame": {
+        "index": 400,
+        "sample_index": 16,
+        "timestamp": 16.0
+      }
+    },
+    {
+      "start_frame": 550,
+      "end_frame": 775,
+      "start_frame_sample": 22,
+      "end_frame_sample": 31,
+      "score": 81.72932108911057,
+      "representative_frame": {
+        "index": 550,
+        "sample_index": 22,
+        "timestamp": 22.0
+      }
+    },
+    {
+      "start_frame": 800,
+      "end_frame": 1075,
+      "start_frame_sample": 32,
+      "end_frame_sample": 43,
+      "score": 50.77677833751946,
+      "representative_frame": {
+        "index": 800,
+        "sample_index": 32,
+        "timestamp": 32.0
+      }
+    },
+    {
+      "start_frame": 1100,
+      "end_frame": 1525,
+      "start_frame_sample": 44,
+      "end_frame_sample": 61,
+      "score": 181.7691555358792,
+      "representative_frame": {
+        "index": 1100,
+        "sample_index": 44,
+        "timestamp": 44.0
+      }
+    },
+    {
+      "start_frame": 1550,
+      "end_frame": 1575,
+      "start_frame_sample": 62,
+      "end_frame_sample": 63,
+      "score": 44.679633744752344,
+      "representative_frame": {
+        "index": 1550,
+        "sample_index": 62,
+        "timestamp": 62.0
+      }
+    },
+    {
+      "start_frame": 1600,
+      "end_frame": 1675,
+      "start_frame_sample": 64,
+      "end_frame_sample": 67,
+      "score": 39.84475162144183,
+      "representative_frame": {
+        "index": 1600,
+        "sample_index": 64,
+        "timestamp": 64.0
+      }
+    },
+    {
+      "start_frame": 1700,
+      "end_frame": 1725,
+      "start_frame_sample": 68,
+      "end_frame_sample": 69,
+      "score": 169.95721806640728,
+      "representative_frame": {
+        "index": 1700,
+        "sample_index": 68,
+        "timestamp": 68.0
+      }
+    },
+    {
+      "start_frame": 1750,
+      "end_frame": 1875,
+      "start_frame_sample": 70,
+      "end_frame_sample": 75,
+      "score": 451.7145202980956,
+      "representative_frame": {
+        "index": 1750,
+        "sample_index": 70,
+        "timestamp": 70.0
+      }
+    },
+    {
+      "start_frame": 1900,
+      "end_frame": 2025,
+      "start_frame_sample": 76,
+      "end_frame_sample": 81,
+      "score": 2055.0071652411734,
+      "representative_frame": {
+        "index": 1900,
+        "sample_index": 76,
+        "timestamp": 76.0
+      }
+    },
+    {
+      "start_frame": 2050,
+      "end_frame": 2125,
+      "start_frame_sample": 82,
+      "end_frame_sample": 85,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 2050,
+        "sample_index": 82,
+        "timestamp": 82.0
+      }
+    }
+  ]
+}

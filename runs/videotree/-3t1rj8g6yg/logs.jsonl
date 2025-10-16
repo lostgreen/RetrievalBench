@@ -1,0 +1,55 @@
+{"event": "start_video", "video_id": "-3t1rj8g6yg"}
+{"event": "breadth_iteration", "cluster_num": 8, "repr_indices": [54, 69, 114, 150, 173, 183, 201, 273], "relevance": [1], "usage": {"completion_tokens": 52, "prompt_tokens": 352, "total_tokens": 639}}
+{"event": "breadth_iteration", "cluster_num": 16, "repr_indices": [23, 30, 40, 54, 64, 116, 134, 148, 171, 177, 248, 256, 274, 279, 298, 316], "relevance": [1], "usage": {"completion_tokens": 45, "prompt_tokens": 352, "total_tokens": 750}}
+{"event": "breadth_iteration", "cluster_num": 32, "repr_indices": [0, 15, 22, 25, 45, 50, 54, 64, 72, 97, 125, 134, 150, 170, 177, 214, 218, 225, 238, 253, 261, 262, 265, 268, 272, 279, 289, 291, 298, 307, 316, 324], "relevance": [1], "usage": {"completion_tokens": 52, "prompt_tokens": 352, "total_tokens": 639}}
+{"event": "breadth_iteration", "cluster_num": 48, "repr_indices": [3, 15, 19, 22, 30, 46, 50, 54, 62, 64, 68, 79, 84, 88, 96, 101, 102, 105, 112, 116, 119, 121, 125, 126, 141, 151, 170, 177, 183, 196, 198, 223, 231, 237, 238, 250, 254, 261, 263, 275, 279, 291, 295, 307, 310, 316, 318, 322], "relevance": [1], "usage": {"completion_tokens": 52, "prompt_tokens": 352, "total_tokens": 639}}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n0", "level": 0, "span": [0.0, 325.0], "rel_score": 3, "parent": null, "frame_count": 325}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n1", "level": 1, "span": [0.0, 325.0], "rel_score": 1, "parent": "n0", "frame_count": 14}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n2", "level": 1, "span": [1.0, 5.0], "rel_score": 1, "parent": "n0", "frame_count": 4}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n3", "level": 1, "span": [5.0, 181.0], "rel_score": 1, "parent": "n0", "frame_count": 13}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n4", "level": 1, "span": [10.0, 189.0], "rel_score": 1, "parent": "n0", "frame_count": 14}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n5", "level": 1, "span": [13.0, 18.0], "rel_score": 1, "parent": "n0", "frame_count": 5}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n6", "level": 1, "span": [18.0, 21.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n7", "level": 1, "span": [21.0, 192.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n8", "level": 1, "span": [24.0, 70.0], "rel_score": 1, "parent": "n0", "frame_count": 7}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n9", "level": 1, "span": [27.0, 324.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n10", "level": 1, "span": [28.0, 35.0], "rel_score": 1, "parent": "n0", "frame_count": 7}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n11", "level": 1, "span": [38.0, 219.0], "rel_score": 1, "parent": "n0", "frame_count": 13}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n12", "level": 1, "span": [41.0, 53.0], "rel_score": 1, "parent": "n0", "frame_count": 9}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n13", "level": 1, "span": [44.0, 83.0], "rel_score": 1, "parent": "n0", "frame_count": 5}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n14", "level": 1, "span": [60.0, 64.0], "rel_score": 1, "parent": "n0", "frame_count": 4}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n15", "level": 1, "span": [75.0, 280.0], "rel_score": 1, "parent": "n0", "frame_count": 7}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n16", "level": 1, "span": [79.0, 81.0], "rel_score": 1, "parent": "n0", "frame_count": 2}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n17", "level": 1, "span": [83.0, 86.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n18", "level": 1, "span": [86.0, 312.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n19", "level": 1, "span": [88.0, 90.0], "rel_score": 1, "parent": "n0", "frame_count": 2}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n20", "level": 1, "span": [90.0, 109.0], "rel_score": 1, "parent": "n0", "frame_count": 13}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n21", "level": 1, "span": [95.0, 147.0], "rel_score": 1, "parent": "n0", "frame_count": 9}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n22", "level": 1, "span": [101.0, 102.0], "rel_score": 1, "parent": "n0", "frame_count": 1}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n23", "level": 1, "span": [102.0, 103.0], "rel_score": 1, "parent": "n0", "frame_count": 1}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n24", "level": 1, "span": [109.0, 114.0], "rel_score": 1, "parent": "n0", "frame_count": 5}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n25", "level": 1, "span": [115.0, 291.0], "rel_score": 1, "parent": "n0", "frame_count": 9}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n26", "level": 1, "span": [119.0, 121.0], "rel_score": 1, "parent": "n0", "frame_count": 2}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n27", "level": 1, "span": [124.0, 128.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n28", "level": 1, "span": [126.0, 127.0], "rel_score": 1, "parent": "n0", "frame_count": 1}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n29", "level": 1, "span": [128.0, 268.0], "rel_score": 1, "parent": "n0", "frame_count": 14}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n30", "level": 1, "span": [133.0, 320.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n31", "level": 1, "span": [137.0, 209.0], "rel_score": 1, "parent": "n0", "frame_count": 10}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n32", "level": 1, "span": [153.0, 173.0], "rel_score": 1, "parent": "n0", "frame_count": 16}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n33", "level": 1, "span": [154.0, 259.0], "rel_score": 1, "parent": "n0", "frame_count": 13}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n34", "level": 1, "span": [193.0, 288.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n35", "level": 1, "span": [198.0, 213.0], "rel_score": 1, "parent": "n0", "frame_count": 8}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n36", "level": 1, "span": [213.0, 235.0], "rel_score": 1, "parent": "n0", "frame_count": 7}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n37", "level": 1, "span": [221.0, 227.0], "rel_score": 1, "parent": "n0", "frame_count": 6}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n38", "level": 1, "span": [235.0, 238.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n39", "level": 1, "span": [238.0, 246.0], "rel_score": 1, "parent": "n0", "frame_count": 8}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n40", "level": 1, "span": [246.0, 286.0], "rel_score": 1, "parent": "n0", "frame_count": 13}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n41", "level": 1, "span": [253.0, 264.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n42", "level": 1, "span": [259.0, 262.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n43", "level": 1, "span": [268.0, 277.0], "rel_score": 1, "parent": "n0", "frame_count": 9}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n44", "level": 1, "span": [291.0, 293.0], "rel_score": 1, "parent": "n0", "frame_count": 2}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n45", "level": 1, "span": [293.0, 301.0], "rel_score": 1, "parent": "n0", "frame_count": 8}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n46", "level": 1, "span": [301.0, 323.0], "rel_score": 1, "parent": "n0", "frame_count": 8}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n47", "level": 1, "span": [305.0, 308.0], "rel_score": 1, "parent": "n0", "frame_count": 3}
+{"event": "node_created", "video_id": "-3t1rj8g6yg", "node_id": "n48", "level": 1, "span": [312.0, 317.0], "rel_score": 1, "parent": "n0", "frame_count": 5}
+{"event": "breadth_summary", "video_id": "-3t1rj8g6yg", "cluster_count": 48, "repr_indices": [3, 15, 19, 22, 30, 46, 50, 54, 62, 64, 68, 79, 84, 88, 96, 101, 102, 105, 112, 116, 119, 121, 125, 126, 141, 151, 170, 177, 183, 196, 198, 223, 231, 237, 238, 250, 254, 261, 263, 275, 279, 291, 295, 307, 310, 316, 318, 322], "model_response": "prediction: D\nexplanation: The only information provided is \"narration,\" which does not give any details about the video's content, making it impossible to determine what the video documents.\nconfidence: 100\nframe relevance: [1]"}

@@ -1,0 +1,255 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/K0mjUgHKfJo.mp4",
+  "video_name": "K0mjUgHKfJo",
+  "fps": 29.97002997002997,
+  "sample_rate": 1.0,
+  "frame_count": 3264,
+  "duration": 108.9088,
+  "width": 640,
+  "height": 360,
+  "sampled_frame_indices": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330,
+    360,
+    390,
+    420,
+    450,
+    480,
+    510,
+    540,
+    570,
+    600,
+    630,
+    660,
+    690,
+    720,
+    750,
+    780,
+    810,
+    840,
+    870,
+    900,
+    930,
+    960,
+    990,
+    1020,
+    1050,
+    1080,
+    1110,
+    1140,
+    1170,
+    1200,
+    1230,
+    1260,
+    1290,
+    1320,
+    1350,
+    1380,
+    1410,
+    1440,
+    1470,
+    1500,
+    1530,
+    1560,
+    1590,
+    1620,
+    1650,
+    1680,
+    1710,
+    1740,
+    1770,
+    1800,
+    1830,
+    1860,
+    1890,
+    1920,
+    1950,
+    1980,
+    2010,
+    2040,
+    2070,
+    2100,
+    2130,
+    2160,
+    2190,
+    2220,
+    2250,
+    2280,
+    2310,
+    2340,
+    2370,
+    2400,
+    2430,
+    2460,
+    2490,
+    2520,
+    2550,
+    2580,
+    2610,
+    2640,
+    2670,
+    2700,
+    2730,
+    2760,
+    2790,
+    2820,
+    2850,
+    2880,
+    2910,
+    2940,
+    2970,
+    3000,
+    3030,
+    3060,
+    3090,
+    3120,
+    3150,
+    3180,
+    3210,
+    3240
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 60,
+      "start_frame_sample": 0,
+      "end_frame_sample": 2,
+      "score": 258.29057020966883,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    },
+    {
+      "start_frame": 90,
+      "end_frame": 510,
+      "start_frame_sample": 3,
+      "end_frame_sample": 17,
+      "score": 40.79746608282137,
+      "representative_frame": {
+        "index": 90,
+        "sample_index": 3,
+        "timestamp": 3.003
+      }
+    },
+    {
+      "start_frame": 540,
+      "end_frame": 900,
+      "start_frame_sample": 18,
+      "end_frame_sample": 30,
+      "score": 4370.342192845485,
+      "representative_frame": {
+        "index": 540,
+        "sample_index": 18,
+        "timestamp": 18.018
+      }
+    },
+    {
+      "start_frame": 930,
+      "end_frame": 1200,
+      "start_frame_sample": 31,
+      "end_frame_sample": 40,
+      "score": 53.49773486002748,
+      "representative_frame": {
+        "index": 930,
+        "sample_index": 31,
+        "timestamp": 31.031
+      }
+    },
+    {
+      "start_frame": 1230,
+      "end_frame": 1470,
+      "start_frame_sample": 41,
+      "end_frame_sample": 49,
+      "score": 103.65131039474572,
+      "representative_frame": {
+        "index": 1230,
+        "sample_index": 41,
+        "timestamp": 41.041000000000004
+      }
+    },
+    {
+      "start_frame": 1500,
+      "end_frame": 2040,
+      "start_frame_sample": 50,
+      "end_frame_sample": 68,
+      "score": 5153.564971427451,
+      "representative_frame": {
+        "index": 1500,
+        "sample_index": 50,
+        "timestamp": 50.050000000000004
+      }
+    },
+    {
+      "start_frame": 2070,
+      "end_frame": 2280,
+      "start_frame_sample": 69,
+      "end_frame_sample": 76,
+      "score": 39.48155119992222,
+      "representative_frame": {
+        "index": 2070,
+        "sample_index": 69,
+        "timestamp": 69.069
+      }
+    },
+    {
+      "start_frame": 2310,
+      "end_frame": 2610,
+      "start_frame_sample": 77,
+      "end_frame_sample": 87,
+      "score": 11951.285089348174,
+      "representative_frame": {
+        "index": 2310,
+        "sample_index": 77,
+        "timestamp": 77.077
+      }
+    },
+    {
+      "start_frame": 2640,
+      "end_frame": 3000,
+      "start_frame_sample": 88,
+      "end_frame_sample": 100,
+      "score": 213136.23993498494,
+      "representative_frame": {
+        "index": 2640,
+        "sample_index": 88,
+        "timestamp": 88.08800000000001
+      }
+    },
+    {
+      "start_frame": 3030,
+      "end_frame": 3210,
+      "start_frame_sample": 101,
+      "end_frame_sample": 107,
+      "score": 1257.4122101876678,
+      "representative_frame": {
+        "index": 3030,
+        "sample_index": 101,
+        "timestamp": 101.101
+      }
+    },
+    {
+      "start_frame": 3240,
+      "end_frame": 3240,
+      "start_frame_sample": 108,
+      "end_frame_sample": 108,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 3240,
+        "sample_index": 108,
+        "timestamp": 108.108
+      }
+    }
+  ]
+}

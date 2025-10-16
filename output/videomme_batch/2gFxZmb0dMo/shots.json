@@ -1,0 +1,522 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/2gFxZmb0dMo.mp4",
+  "video_name": "2gFxZmb0dMo",
+  "fps": 23.976023976023978,
+  "sample_rate": 1.0,
+  "frame_count": 1806,
+  "duration": 75.32525,
+  "width": 1280,
+  "height": 720,
+  "sampled_frame_indices": [
+    0,
+    24,
+    48,
+    72,
+    96,
+    120,
+    144,
+    168,
+    192,
+    216,
+    240,
+    264,
+    288,
+    312,
+    336,
+    360,
+    384,
+    408,
+    432,
+    456,
+    480,
+    504,
+    528,
+    552,
+    576,
+    600,
+    624,
+    648,
+    672,
+    696,
+    720,
+    744,
+    768,
+    792,
+    816,
+    840,
+    864,
+    888,
+    912,
+    936,
+    960,
+    984,
+    1008,
+    1032,
+    1056,
+    1080,
+    1104,
+    1128,
+    1152,
+    1176,
+    1200,
+    1224,
+    1248,
+    1272,
+    1296,
+    1320,
+    1344,
+    1368,
+    1392,
+    1416,
+    1440,
+    1464,
+    1488,
+    1512,
+    1536,
+    1560,
+    1584,
+    1608,
+    1632,
+    1656,
+    1680,
+    1704,
+    1728,
+    1752,
+    1776,
+    1800
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 72,
+      "start_frame_sample": 0,
+      "end_frame_sample": 3,
+      "score": 838.1671348359824,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    },
+    {
+      "start_frame": 96,
+      "end_frame": 96,
+      "start_frame_sample": 4,
+      "end_frame_sample": 4,
+      "score": 52.85695391246766,
+      "representative_frame": {
+        "index": 96,
+        "sample_index": 4,
+        "timestamp": 4.004
+      }
+    },
+    {
+      "start_frame": 120,
+      "end_frame": 144,
+      "start_frame_sample": 5,
+      "end_frame_sample": 6,
+      "score": 51.41071670558042,
+      "representative_frame": {
+        "index": 120,
+        "sample_index": 5,
+        "timestamp": 5.005
+      }
+    },
+    {
+      "start_frame": 168,
+      "end_frame": 192,
+      "start_frame_sample": 7,
+      "end_frame_sample": 8,
+      "score": 42.146409445275395,
+      "representative_frame": {
+        "index": 168,
+        "sample_index": 7,
+        "timestamp": 7.007
+      }
+    },
+    {
+      "start_frame": 216,
+      "end_frame": 216,
+      "start_frame_sample": 9,
+      "end_frame_sample": 9,
+      "score": 337.9370768628987,
+      "representative_frame": {
+        "index": 216,
+        "sample_index": 9,
+        "timestamp": 9.008999999999999
+      }
+    },
+    {
+      "start_frame": 240,
+      "end_frame": 264,
+      "start_frame_sample": 10,
+      "end_frame_sample": 11,
+      "score": 298.5067342931981,
+      "representative_frame": {
+        "index": 240,
+        "sample_index": 10,
+        "timestamp": 10.01
+      }
+    },
+    {
+      "start_frame": 288,
+      "end_frame": 288,
+      "start_frame_sample": 12,
+      "end_frame_sample": 12,
+      "score": 259.3676832657452,
+      "representative_frame": {
+        "index": 288,
+        "sample_index": 12,
+        "timestamp": 12.011999999999999
+      }
+    },
+    {
+      "start_frame": 312,
+      "end_frame": 480,
+      "start_frame_sample": 13,
+      "end_frame_sample": 20,
+      "score": 56.3441283005193,
+      "representative_frame": {
+        "index": 312,
+        "sample_index": 13,
+        "timestamp": 13.013
+      }
+    },
+    {
+      "start_frame": 504,
+      "end_frame": 528,
+      "start_frame_sample": 21,
+      "end_frame_sample": 22,
+      "score": 86.96842442226222,
+      "representative_frame": {
+        "index": 504,
+        "sample_index": 21,
+        "timestamp": 21.020999999999997
+      }
+    },
+    {
+      "start_frame": 552,
+      "end_frame": 600,
+      "start_frame_sample": 23,
+      "end_frame_sample": 25,
+      "score": 497.92728289446814,
+      "representative_frame": {
+        "index": 552,
+        "sample_index": 23,
+        "timestamp": 23.023
+      }
+    },
+    {
+      "start_frame": 624,
+      "end_frame": 648,
+      "start_frame_sample": 26,
+      "end_frame_sample": 27,
+      "score": 582.4911830415923,
+      "representative_frame": {
+        "index": 624,
+        "sample_index": 26,
+        "timestamp": 26.026
+      }
+    },
+    {
+      "start_frame": 672,
+      "end_frame": 672,
+      "start_frame_sample": 28,
+      "end_frame_sample": 28,
+      "score": 714.8772321340359,
+      "representative_frame": {
+        "index": 672,
+        "sample_index": 28,
+        "timestamp": 28.028
+      }
+    },
+    {
+      "start_frame": 696,
+      "end_frame": 720,
+      "start_frame_sample": 29,
+      "end_frame_sample": 30,
+      "score": 111.78757018418551,
+      "representative_frame": {
+        "index": 696,
+        "sample_index": 29,
+        "timestamp": 29.028999999999996
+      }
+    },
+    {
+      "start_frame": 744,
+      "end_frame": 744,
+      "start_frame_sample": 31,
+      "end_frame_sample": 31,
+      "score": 54.69867137809946,
+      "representative_frame": {
+        "index": 744,
+        "sample_index": 31,
+        "timestamp": 31.031
+      }
+    },
+    {
+      "start_frame": 768,
+      "end_frame": 816,
+      "start_frame_sample": 32,
+      "end_frame_sample": 34,
+      "score": 81.54147262799822,
+      "representative_frame": {
+        "index": 768,
+        "sample_index": 32,
+        "timestamp": 32.032
+      }
+    },
+    {
+      "start_frame": 840,
+      "end_frame": 888,
+      "start_frame_sample": 35,
+      "end_frame_sample": 37,
+      "score": 1900.3403774527874,
+      "representative_frame": {
+        "index": 840,
+        "sample_index": 35,
+        "timestamp": 35.035
+      }
+    },
+    {
+      "start_frame": 912,
+      "end_frame": 960,
+      "start_frame_sample": 38,
+      "end_frame_sample": 40,
+      "score": 120.86822478677027,
+      "representative_frame": {
+        "index": 912,
+        "sample_index": 38,
+        "timestamp": 38.038
+      }
+    },
+    {
+      "start_frame": 984,
+      "end_frame": 1008,
+      "start_frame_sample": 41,
+      "end_frame_sample": 42,
+      "score": 31.201737580754735,
+      "representative_frame": {
+        "index": 984,
+        "sample_index": 41,
+        "timestamp": 41.041
+      }
+    },
+    {
+      "start_frame": 1032,
+      "end_frame": 1032,
+      "start_frame_sample": 43,
+      "end_frame_sample": 43,
+      "score": 206.32118753710046,
+      "representative_frame": {
+        "index": 1032,
+        "sample_index": 43,
+        "timestamp": 43.043
+      }
+    },
+    {
+      "start_frame": 1056,
+      "end_frame": 1080,
+      "start_frame_sample": 44,
+      "end_frame_sample": 45,
+      "score": 77.5224806241772,
+      "representative_frame": {
+        "index": 1056,
+        "sample_index": 44,
+        "timestamp": 44.044
+      }
+    },
+    {
+      "start_frame": 1104,
+      "end_frame": 1104,
+      "start_frame_sample": 46,
+      "end_frame_sample": 46,
+      "score": 3409.6536458475775,
+      "representative_frame": {
+        "index": 1104,
+        "sample_index": 46,
+        "timestamp": 46.046
+      }
+    },
+    {
+      "start_frame": 1128,
+      "end_frame": 1128,
+      "start_frame_sample": 47,
+      "end_frame_sample": 47,
+      "score": 151.20284210154244,
+      "representative_frame": {
+        "index": 1128,
+        "sample_index": 47,
+        "timestamp": 47.047
+      }
+    },
+    {
+      "start_frame": 1152,
+      "end_frame": 1152,
+      "start_frame_sample": 48,
+      "end_frame_sample": 48,
+      "score": 69.16431457045292,
+      "representative_frame": {
+        "index": 1152,
+        "sample_index": 48,
+        "timestamp": 48.047999999999995
+      }
+    },
+    {
+      "start_frame": 1176,
+      "end_frame": 1176,
+      "start_frame_sample": 49,
+      "end_frame_sample": 49,
+      "score": 112.2256799713559,
+      "representative_frame": {
+        "index": 1176,
+        "sample_index": 49,
+        "timestamp": 49.049
+      }
+    },
+    {
+      "start_frame": 1200,
+      "end_frame": 1224,
+      "start_frame_sample": 50,
+      "end_frame_sample": 51,
+      "score": 48.32830859078271,
+      "representative_frame": {
+        "index": 1200,
+        "sample_index": 50,
+        "timestamp": 50.05
+      }
+    },
+    {
+      "start_frame": 1248,
+      "end_frame": 1248,
+      "start_frame_sample": 52,
+      "end_frame_sample": 52,
+      "score": 190.12368041493602,
+      "representative_frame": {
+        "index": 1248,
+        "sample_index": 52,
+        "timestamp": 52.052
+      }
+    },
+    {
+      "start_frame": 1272,
+      "end_frame": 1296,
+      "start_frame_sample": 53,
+      "end_frame_sample": 54,
+      "score": 69.01361790451303,
+      "representative_frame": {
+        "index": 1272,
+        "sample_index": 53,
+        "timestamp": 53.053
+      }
+    },
+    {
+      "start_frame": 1320,
+      "end_frame": 1344,
+      "start_frame_sample": 55,
+      "end_frame_sample": 56,
+      "score": 65.53148307184073,
+      "representative_frame": {
+        "index": 1320,
+        "sample_index": 55,
+        "timestamp": 55.05499999999999
+      }
+    },
+    {
+      "start_frame": 1368,
+      "end_frame": 1368,
+      "start_frame_sample": 57,
+      "end_frame_sample": 57,
+      "score": 47.31546425280361,
+      "representative_frame": {
+        "index": 1368,
+        "sample_index": 57,
+        "timestamp": 57.056999999999995
+      }
+    },
+    {
+      "start_frame": 1392,
+      "end_frame": 1416,
+      "start_frame_sample": 58,
+      "end_frame_sample": 59,
+      "score": 40.87439094965958,
+      "representative_frame": {
+        "index": 1392,
+        "sample_index": 58,
+        "timestamp": 58.05799999999999
+      }
+    },
+    {
+      "start_frame": 1440,
+      "end_frame": 1512,
+      "start_frame_sample": 60,
+      "end_frame_sample": 63,
+      "score": 112.23081727228637,
+      "representative_frame": {
+        "index": 1440,
+        "sample_index": 60,
+        "timestamp": 60.059999999999995
+      }
+    },
+    {
+      "start_frame": 1536,
+      "end_frame": 1536,
+      "start_frame_sample": 64,
+      "end_frame_sample": 64,
+      "score": 467.7577236998724,
+      "representative_frame": {
+        "index": 1536,
+        "sample_index": 64,
+        "timestamp": 64.064
+      }
+    },
+    {
+      "start_frame": 1560,
+      "end_frame": 1608,
+      "start_frame_sample": 65,
+      "end_frame_sample": 67,
+      "score": 349.58025691413076,
+      "representative_frame": {
+        "index": 1560,
+        "sample_index": 65,
+        "timestamp": 65.065
+      }
+    },
+    {
+      "start_frame": 1632,
+      "end_frame": 1632,
+      "start_frame_sample": 68,
+      "end_frame_sample": 68,
+      "score": 455.19685212175165,
+      "representative_frame": {
+        "index": 1632,
+        "sample_index": 68,
+        "timestamp": 68.068
+      }
+    },
+    {
+      "start_frame": 1656,
+      "end_frame": 1656,
+      "start_frame_sample": 69,
+      "end_frame_sample": 69,
+      "score": 37.32086099384206,
+      "representative_frame": {
+        "index": 1656,
+        "sample_index": 69,
+        "timestamp": 69.06899999999999
+      }
+    },
+    {
+      "start_frame": 1680,
+      "end_frame": 1800,
+      "start_frame_sample": 70,
+      "end_frame_sample": 75,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 1680,
+        "sample_index": 70,
+        "timestamp": 70.07
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "video": "/data5/zgw/video_datasets/Video-MME/videos/6Z_XNM_iT4g.mp4",
+  "video_name": "6Z_XNM_iT4g",
+  "fps": 30.0,
+  "sample_rate": 1.0,
+  "frame_count": 331,
+  "duration": 11.033333333333333,
+  "width": 1280,
+  "height": 720,
+  "sampled_frame_indices": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "shots": [
+    {
+      "start_frame": 0,
+      "end_frame": 330,
+      "start_frame_sample": 0,
+      "end_frame_sample": 11,
+      "score": 0.0,
+      "representative_frame": {
+        "index": 0,
+        "sample_index": 0,
+        "timestamp": 0.0
+      }
+    }
+  ]
+}
