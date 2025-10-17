@@ -209,9 +209,12 @@ def run_single_video(
             user_content_round2 = [{"type": "text", "text": shot_prompt}]
             try:
                 with _video_capture(str(example.video_path)) as cap:
+                    per = 3
+                    if selected_shots:
+                        per = max(1, int(cfg.round2_max_frames_total // len(selected_shots)))
                     for shot in selected_shots:
                         frame_indices = _evenly_spaced_frames(
-                            int(shot.start_frame), int(shot.end_frame), k=3
+                            int(shot.start_frame), int(shot.end_frame), k=per
                         )
                         user_content_round2.append(
                             {"type": "text", "text": f"Shot {shot.shot_id} frames {frame_indices}:"}

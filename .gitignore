@@ -2,6 +2,7 @@
 output/
 # 忽略 runs 文件夹及其全部内容
 runs/
+annotation/gt/
 
 # 可选：忽略临时文件、日志等
 *.log

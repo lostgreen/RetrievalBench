@@ -49,6 +49,8 @@ class EvalConfig:
     )
     budgets_token: Sequence[float] = (10.0, 20.0, 30.0, 40.0)
     acc_targets: Sequence[float] = (0.6, 0.7, 0.8, 0.9)
+    # Round-2 total frame budget for non-planning mode (evenly split per selected shot)
+    round2_max_frames_total: int = 128
 
     def resolve_cache_dir(self) -> Path:
         path = self.cache_dir.expanduser()

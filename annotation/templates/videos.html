@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Videos</h1>
+<div class="list">
+  {% for it in items %}
+    <div class="item">
+      <div class="title">{{ it.video_id }}</div>
+      <div><a class="btn" href="{{ url_for('annotate', video_id=it.video_id) }}">Annotate</a></div>
+    </div>
+  {% else %}
+    <p>No videos found under configured shots root.</p>
+  {% endfor %}
+  </div>
+{% endblock %}
+

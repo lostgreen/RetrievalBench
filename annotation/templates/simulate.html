@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Stage 2: {{ video_id }}</h1>
+
+<section class="question">
+  {% if question %}
+    <div class="qtext">Q: {{ question.question }}</div>
+    {% if question.options %}
+      <div class="options">
+        {% for op in question.options %}
+          <label><input type="radio" name="answer" value="{{ op }}"> {{ op }}</label>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if question.answer %}
+      <div class="gt">GT Answer: <span class="gt-answer">{{ question.answer }}</span></div>
+    {% endif %}
+  {% else %}
+    <div class="qtext">No question available.</div>
+  {% endif %}
+  <div style="margin-top:8px; font-size:13px; color:#666;">Total frame budget: {{ max_frames }}, selected shots: {{ selected_shots|length }}</div>
+  <textarea id="notes" placeholder="Notes (optional)"></textarea>
+</section>
+
+<div class="toolbar">
+  <button id="saveBtn" class="btn primary" type="button">Save GT</button>
+  <a href="{{ url_for('annotate', video_id=video_id) }}" class="btn" style="margin-left:8px">Back to Select</a>
+</div>
+
+<section class="stage2">
+  {% for it in items %}
+    <div class="shot">
+      <div class="meta">Shot {{ it.shot_id }} | frames {{ it.start }}–{{ it.end }}</div>
+      <div class="frames big">
+        {% for u in it.urls %}
+          <div class="crop-container">
+            <img src="{{ u }}" data-frame="{{ it.frames[loop.index0] }}">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+<script>
+window.ANNO = {
+  video_id: {{ video_id|tojson }},
+  save_url: {{ url_for('save_gt', video_id=video_id)|tojson }},
+  selected_shots: {{ selected_shots|tojson }},
+};
+</script>
+{% endblock %}

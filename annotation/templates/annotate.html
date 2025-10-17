@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Annotate: {{ video_id }}</h1>
+
+<section class="question">
+  {% if question %}
+    <div class="qtext">Q: {{ question.question }}</div>
+    {% if question.options %}
+      <div class="options">
+        {% for op in question.options %}
+          <label><input type="radio" name="answer" value="{{ op }}"> {{ op }}</label>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if question.answer %}
+      <div class="gt">GT Answer: <span class="gt-answer">{{ question.answer }}</span></div>
+    {% endif %}
+  {% else %}
+    <div class="qtext">No question available.</div>
+  {% endif %}
+  <textarea id="notes" placeholder="Notes (optional)"></textarea>
+</section>
+
+<section>
+  <div class="toolbar">
+    <button id="saveBtn" class="btn primary" type="button">Save GT</button>
+    <span style="margin-left:12px">Stage 2 max frames:</span>
+    <input type="number" id="stage2MaxFrames" value="{{ stage2_max_frames }}" min="1" style="width:90px">
+    <button id="stage2Btn" class="btn" type="button">Simulate Stage 2</button>
+  </div>
+  <div id="shots" class="shots">
+    {% for s in shots %}
+      <div class="shot" data-shot-id="{{ s.shot_id }}" data-start="{{ s.start }}" data-end="{{ s.end }}" data-rep="{{ s.rep_index }}">
+        <div class="shot-head">
+          <label class="select">
+            <input type="checkbox" class="select-shot"> Select
+          </label>
+          <div class="meta">Shot {{ s.shot_id }} | frames {{ s.start }}–{{ s.end }}</div>
+        </div>
+        <div class="rep">
+          <img src="{{ url_for('image', video_id=video_id, frame=s.rep_index) }}" alt="rep">
+        </div>
+        <div class="actions">
+          <button class="btn small peek">Peek details</button>
+        </div>
+        <div class="details hidden">
+          <div class="frames"></div>
+          <div class="crop-tools">
+            <div class="hint">If unclear, propose a crop (normalized bbox). You can either drag on a thumbnail or fill the form below.</div>
+            <div class="row">
+              <label>Frame: <input type="number" class="crop-frame" placeholder="e.g. {{ s.rep_index }}" min="0"></label>
+              <label>BBox [x1,y1,x2,y2]: <input type="text" class="crop-bbox" placeholder="0.25,0.25,0.75,0.75"></label>
+              <button class="btn small add-crop">Add Crop</button>
+            </div>
+            <div class="proposed"></div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+window.ANNO = {
+  video_id: {{ video_id|tojson }},
+  save_url: {{ url_for('save_gt', video_id=video_id)|tojson }},
+  frames_api: function(start, end) { return {{ url_for('frames', video_id=video_id, start=0, end=1)|tojson }}.replace('/0/1', '/' + start + '/' + end); },
+};
+</script>
+{% endblock %}
