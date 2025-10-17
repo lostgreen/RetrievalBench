@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, List, Mapping, Sequence
 
-from .config import EvalConfig
-from .utils import (
+from evaluate.config import EvalConfig
+from evaluate.utils import (
     ShotSample,
     list_shot_files,
     load_videomme_questions,

@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
-from typing import Any, Dict, List, Mapping, Sequence
+from typing import Any, Dict, Mapping, Sequence
 
-from .config import EvalConfig
-from .metrics import MetricResult, compute_k_at_b, compute_oracle_regret, summarize_metrics
-from .prompt_generator import generate_prompt
-from .utils import ShotSample
-from .data_loader import QuestionItem
+from evaluate.data_loader import QuestionItem
+from evaluate.metrics import MetricResult
 
 
 @dataclass
@@ -31,52 +29,55 @@ class EvaluationResult:
     raw_predictions: Mapping[str, Any]
 
 
-def evaluate_model(
-    model: ModelInterface,
-    shots: Sequence[ShotSample],
-    cfg: EvalConfig,
-    questions: Sequence[QuestionItem] | None = None,
-    video_path: str | None = None,
-    fps: float | None = None,
-) -> EvaluationResult:
-    """Run the model against shots and compute metrics."""
-    prompts = generate_prompt(shots, cfg, questions=questions, fps=fps)
-    video_path_str = video_path or "unknown"
-    model_output = model.predict(
-        prompts.overview_prompt,
-        shot_count=len(shots),
-        video_path=video_path_str,
-        question=prompts.question,
-        question_id=prompts.question_id,
-        options=list(prompts.options),
-        shot_summaries=list(prompts.shot_summaries),
-        prompt_bundle=prompts,
-    )
+def _extract_choice(response: str, options: Sequence[str]) -> str | None:
+    """Extracts the chosen option from a model's text response."""
+    # Sanitize the response
+    response_lower = response.lower().strip()
 
-    predicted_order = model_output.get("shot_order", [])
-    if not isinstance(predicted_order, list):
-        predicted_order = list(predicted_order)
-    predicted_indices = [int(idx) for idx in predicted_order]
-    if not predicted_indices:
-        predicted_indices = list(range(len(shots)))
-    ground_truth_indices = [shot.representative_index for shot in shots]
-    budgets = list(range(1, min(len(predicted_indices), cfg.max_budget) + 1))
+    # 1. Check for an explicit "Answer: X" style declaration
+    for i, option in enumerate(options):
+        letter = chr(65 + i)
+        if re.search(rf"answer\s*[:\-]?\s*{letter.lower()}\b", response_lower):
+            return option
 
-    k_at_b_result = compute_k_at_b(predicted_indices, ground_truth_indices, budgets)
-    k_at_b_result = summarize_metrics(k_at_b_result)
+    # 2. Check for the option letter followed by a period or parenthesis (e.g., "A.", "(B)")
+    for i, option in enumerate(options):
+        letter = chr(65 + i)
+        patterns = [
+            f"^{letter.lower()}[\.\)]",  # A., A), a., a)
+            f"\({letter.lower()}\)",      # (A), (a)
+            f"choice is {letter.lower()}[\.\s]",
+            f"option {letter.lower()}[\.\s]",
+        ]
+        for pattern in patterns:
+            if re.search(pattern, response_lower):
+                return option
 
-    oracle_recall = 1.0
-    achieved_recall = k_at_b_result.values.get("final_recall", 0.0)
-    regret_value = compute_oracle_regret(achieved_recall, oracle_recall)
-    regret_result = MetricResult(name="oracle_regret", values={"value": regret_value})
+    # 3. Check if the option text itself is in the response
+    for option in options:
+        if option.lower() in response_lower:
+            return option
 
-    metrics = {
-        k_at_b_result.name: k_at_b_result,
-        regret_result.name: regret_result,
+    return None
+
+
+def evaluate_multiple_choice(
+    model_response: str,
+    question: QuestionItem,
+) -> Dict[str, MetricResult]:
+    """Evaluates a multiple-choice question response."""
+    if not question.options or question.answer is None:
+        return {}
+
+    predicted_option = _extract_choice(model_response, question.options)
+
+    is_correct = 0
+    if predicted_option and predicted_option == question.answer:
+        is_correct = 1
+
+    return {
+        "multiple_choice_accuracy": MetricResult(
+            name="multiple_choice_accuracy",
+            values={"accuracy": is_correct},
+        )
     }
-
-    return EvaluationResult(
-        video_path=model_output.get("video_path", video_path_str),
-        metrics=metrics,
-        raw_predictions=model_output,
-    )

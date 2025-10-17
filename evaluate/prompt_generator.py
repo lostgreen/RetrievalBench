@@ -2,72 +2,117 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from abc import ABC, abstractmethod
 from typing import Sequence
 
-from .config import EvalConfig
-from .utils import ShotSample
-from .data_loader import QuestionItem
-
-
-@dataclass
-class PromptBundle:
-    """Holds prompt strings and metadata for evaluation prompting."""
-
-    overview_prompt: str
-    question_id: str | None
-    question: str | None
-    options: Sequence[str]
-    shot_summaries: Sequence[str]
+from evaluate.data_loader import QuestionItem
+from evaluate.utils import ShotSample
 
 
 def _format_time(frame_idx: int, fps: float) -> float:
+    """Formats a frame index into a timestamp in seconds."""
     if fps and fps > 0:
         return frame_idx / fps
     return float(frame_idx)
 
 
-def generate_prompt(
-    shots: Sequence[ShotSample],
-    cfg: EvalConfig,
-    questions: Sequence[QuestionItem] | None = None,
-    fps: float | None = None,
-) -> PromptBundle:
-    """Generate prompts based on shot metadata and dataset questions."""
+class BasePromptGenerator(ABC):
+    """Abstract base class for prompt generators."""
 
-    primary_question = questions[0] if questions else None
-    intro_lines = [
-        "You are analyzing key shots extracted from a video.",
-        "Shots are identified by their temporal range in seconds. Higher boundary_score indicates stronger scene changes.",
-    ]
+    def __init__(self, prompt_template: str):
+        self.template = prompt_template
 
-    if primary_question:
-        intro_lines.append(
-            f"Answer the following question based on the shots: {primary_question.question}"
-        )
-        if primary_question.options:
-            option_lines = [f"{chr(65 + idx)}. {text}" for idx, text in enumerate(primary_question.options)]
-            intro_lines.extend(option_lines)
+    @abstractmethod
+    def generate_prompt(
+        self,
+        shots: Sequence[ShotSample],
+        questions: Sequence[QuestionItem] | None = None,
+        fps: float | None = None,
+        **kwargs,
+    ) -> str:
+        """Generate a prompt string."""
+        raise NotImplementedError
 
-    overview_prompt = "\n".join(intro_lines)
 
-    shot_summaries: list[str] = []
-    effective_fps = fps or 0.0
-    for idx, shot in enumerate(shots, start=1):
-        start_time = _format_time(shot.start_frame, effective_fps)
-        end_time = _format_time(shot.end_frame, effective_fps)
-        summary = (
-            f"Shot {idx}: time {start_time:.2f}s - {end_time:.2f}s, boundary_score={shot.score:.2f}"
-        )
-        shot_summaries.append(summary)
+class ScenePromptGenerator(BasePromptGenerator):
+    """Generates prompts for scene-level (Round 1) analysis."""
 
-    if shot_summaries:
-        overview_prompt = overview_prompt + "\n" + "\n".join(shot_summaries)
+    def generate_prompt(
+        self,
+        shots: Sequence[ShotSample],
+        questions: Sequence[QuestionItem] | None = None,
+        fps: float | None = None,
+        **kwargs,
+    ) -> str:
+        """Generates a prompt with representative frames for each shot/scene."""
+        intro_lines = [
+            "You are analyzing key scenes extracted from a video.",
+            "Each scene is represented by one or two keyframes and is identified by an index.",
+            "Your task is to determine which scenes are most relevant for answering a potential question.",
+            "Please output the indices of the scenes you need to inspect more closely.",
+        ]
 
-    return PromptBundle(
-        overview_prompt=overview_prompt,
-        question_id=primary_question.question_id if primary_question else None,
-        question=primary_question.question if primary_question else None,
-        options=primary_question.options if primary_question else (),
-        shot_summaries=shot_summaries,
-    )
+        if questions:
+            primary_question = questions[0]
+            intro_lines.append(
+                f"The question to answer is: '{primary_question.question}'"
+            )
+            if primary_question.options:
+                option_lines = [
+                    f"{chr(65 + idx)}. {text}"
+                    for idx, text in enumerate(primary_question.options)
+                ]
+                intro_lines.extend(option_lines)
+
+        scene_summaries: list[str] = []
+        effective_fps = fps or 30.0
+        # This assumes we get one representative frame per shot/scene for Round 1
+        for shot in shots:
+            start_time = _format_time(shot.start_frame, effective_fps)
+            end_time = _format_time(shot.end_frame, effective_fps)
+            summary = (
+                f"Scene {shot.shot_id}: time {start_time:.2f}s - {end_time:.2f}s. "
+                f"Representative frame index {shot.representative_index}."
+            )
+            scene_summaries.append(summary)
+
+        prompt = "\n".join(intro_lines)
+        if scene_summaries:
+            prompt += "\n\n" + "\n".join(scene_summaries)
+
+        return prompt
+
+
+class ShotPromptGenerator(BasePromptGenerator):
+    """Generates prompts for shot-level (Round 2) analysis."""
+
+    def generate_prompt(
+        self,
+        shots: Sequence[ShotSample],
+        questions: Sequence[QuestionItem] | None = None,
+        fps: float | None = None,
+        **kwargs,
+    ) -> str:
+        """Generates a prompt with all frames for the selected shots."""
+        intro_lines = [
+            "You are analyzing the detailed frames from a set of selected video shots.",
+            "Use this detailed information to provide a comprehensive answer.",
+        ]
+
+        shot_details: list[str] = []
+        effective_fps = fps or 30.0
+        for shot in shots:
+            start_time = _format_time(shot.start_frame, effective_fps)
+            end_time = _format_time(shot.end_frame, effective_fps)
+            # Here, we would ideally include all frame paths or representations
+            # For simplicity, we'll just list the frame indices.
+            frames = f"Frames {shot.start_frame} to {shot.end_frame}"
+            shot_details.append(
+                f"Shot {shot.shot_id} (time {start_time:.2f}s - {end_time:.2f}s):\n{frames}"
+            )
+
+        prompt = "\n".join(intro_lines)
+        if shot_details:
+            prompt += "\n\n" + "\n".join(shot_details)
+
+        return prompt

@@ -8,15 +8,36 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Sequence
 
-from .config import EvalConfig
+from evaluate.config import EvalConfig
 
 LOGGER = logging.getLogger("evaluate")
 
 
 def configure_logging(verbose: bool) -> None:
-    """Configure root logging level."""
-    level = logging.DEBUG if verbose else logging.INFO
-    logging.basicConfig(level=level, format="%(asctime)s [%(levelname)s] %(message)s")
+    """Configure logging.
+
+    - Root logger stays at INFO to avoid third-party DEBUG noise (httpx/openai etc.).
+    - Our namespace logger "evaluate" is set to DEBUG when verbose=True.
+    - Noisy external loggers are clamped to WARNING.
+    """
+    # Always initialize root at INFO to suppress third-party DEBUG logs
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+    # Our project logger
+    eval_logger = logging.getLogger("evaluate")
+    eval_logger.setLevel(logging.DEBUG if verbose else logging.INFO)
+
+    # Quiet noisy libraries regardless of verbose
+    for name in (
+        "httpx",
+        "httpcore",
+        "urllib3",
+        "openai",
+        "openai._base_client",
+        "openai._http_client",
+    ):
+        ext_logger = logging.getLogger(name)
+        ext_logger.setLevel(logging.WARNING)
 
 
 def read_json(path: Path) -> Any:
@@ -56,6 +77,7 @@ def ensure_api_bank(cfg: EvalConfig) -> Path:
 class ShotSample:
     """Structured representation of a shot entry."""
 
+    shot_id: int
     start_frame: int
     end_frame: int
     score: float
@@ -66,10 +88,11 @@ class ShotSample:
 def parse_shots(shots_json: Mapping[str, Any]) -> List[ShotSample]:
     """Convert raw shots JSON into ShotSample objects."""
     samples: List[ShotSample] = []
-    for entry in shots_json.get("shots", []):
+    for idx, entry in enumerate(shots_json.get("shots", [])):
         rep = entry.get("representative_frame", {})
         samples.append(
             ShotSample(
+                shot_id=idx,
                 start_frame=int(entry.get("start_frame", -1)),
                 end_frame=int(entry.get("end_frame", -1)),
                 score=float(entry.get("score", 0.0)),

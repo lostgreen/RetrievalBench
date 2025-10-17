@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Sequence
+from typing import Mapping, Sequence
 
 
 @dataclass
@@ -25,6 +25,30 @@ class EvalConfig:
     request_timeout: int = 30
     save_predictions: bool = True
     predictions_dir: Path = Path("runs/evaluation_predictions")
+    # Enable action-planning (AIF-V) round-1 with explicit actions under budget
+    enable_action_planning: bool = False
+    round1_budget_token: float = 20.0
+    # Cost model
+    cost_table_token: Mapping[str, float] = field(
+        default_factory=lambda: {
+            "peek_scene": 1.0,
+            "peek_shot": 0.5,
+            "request_hd_frame": 5.0,
+            "request_clip_1s": 15.0,
+            "answer": 0.5,
+        }
+    )
+    cost_table_latency: Mapping[str, float] = field(
+        default_factory=lambda: {
+            "peek_scene": 1.0,
+            "peek_shot": 0.5,
+            "request_hd_frame": 5.0,
+            "request_clip_1s": 15.0,
+            "answer": 0.5,
+        }
+    )
+    budgets_token: Sequence[float] = (10.0, 20.0, 30.0, 40.0)
+    acc_targets: Sequence[float] = (0.6, 0.7, 0.8, 0.9)
 
     def resolve_cache_dir(self) -> Path:
         path = self.cache_dir.expanduser()
