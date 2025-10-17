@@ -1,0 +1,10 @@
+# 忽略 output 文件夹及其全部内容
+output/
+# 忽略 runs 文件夹及其全部内容
+runs/
+
+# 可选：忽略临时文件、日志等
+*.log
+*.tmp
+*.DS_Store
+__pycache__/

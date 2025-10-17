@@ -1,2 +1,0 @@
--3t1rj8g6yg	RuntimeError('Model returned None for frame relevance prediction.')
--3t1rj8g6yg	NotFoundError("Error code: 404 - [{'error': {'code': 404, 'message': 'models/gpt-4-1106-preview is not found for API version v1main, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}]")
