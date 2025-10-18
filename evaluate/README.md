@@ -9,7 +9,7 @@
     - 载入数据集（shots.json 与题目）。
     - Round 1：
       - 默认模式（选择模式）：构造场景级提示词并附代表帧图片，请模型选择若干 `shots`。
-      - 规划模式（动作式）：引导模型输出 JSON 动作计划（在预算内选择 `peek_*`/`request_*` 动作），系统解析与执行后产出证据。
+  - 规划模式（动作式）：引导模型输出“简洁文本”动作计划（在预算内选择 `peek_*`/`request_*` 动作），系统用正则解析并执行后产出证据；若模型直接输出 JSON 计划也同样被支持。
     - Round 2：基于选中 shots 或执行得到的证据，缝合 Round 1 思维链，生成最终答案。
     - 解析模型输出、计算指标、保存中间结果，并聚合总体指标。
     - 跳过已预测的视频（依据已存在的 `*_predictions.json`）。
@@ -28,12 +28,14 @@
 - `costs.py`
   - 成本模型与指标：
     - `CostTable`/`CostLedger` 管理动作成本与记账（token 等价与时延等价）。
+    - Round 1 的“概览”（展示所有镜头代表帧）默认不计费；如需收取统一“入场费”，可在 `cost_table_*` 中设置 `overview` 的价格，系统会在每个视频上仅计一次 `overview`。
     - 评测指标：`k_at_b`（K@B）、`c_at_a`（C@A，下界估计）、`oracle_regret`（神谕悔恨）。
 
 - `action_schema.py`
   - 动作式提示与解析：
-    - `build_planning_system_prompt(cfg, budget, shot_count)` 生成规划系统提示（含 JSON schema 与价目表）。
-    - `parse_action_plan(text)` 从模型回复中提取 JSON 计划（优先 ```json fenced code```）。
+    - `build_planning_system_prompt(cfg, budget, shot_count)` 生成规划系统提示（简洁文本格式 + 价目表）。
+    - `parse_action_plan(text)` 从模型回复中提取计划：优先解析 ```json fenced```，否则解析“简洁文本”行（正则抽取）。
+    - 支持的动作：`peek_shot`、`peek_clip(shot_id, clip_index)`、`request_hd_frame`、`request_clip_1s`、`zoom_hd(shot_id, frame, intent=words)`、`request_hd_crop`。
     - `validate_actions(plan, shot_count)` 校验动作与参数（类型/范围/坐标合法性）。
 
 - `action_runtime.py`
@@ -65,19 +67,16 @@
 ## 数据流与执行流程
 
 1. 读取 `shots_root` 下的 `shots.json`，并按视频分组题目（如提供）。
-2. Round 1（两种模式，二选一）：
-   - 选择模式（默认）：
+   - 如 `annotation/gt/` 目录存在对应 `video_id.json`，则仅对具备 GT 的视频进行评测；
+   - 同时基于 GT 的 `selected_shots` 计算镜头选择指标（K@B 曲线与 AUIC 聚合，指标名 `shot_selection_k_at_b/*`）。
+2. Round 1（镜头选择）：
+  - 选择模式：
      - 生成场景级提示（文本 + 代表帧），系统提示要求：
        - 用 `<think>...</think>` 包裹分析；
        - 最后只输出一行：`Shots: [i, j, ...]`，0-based、不超过 `max_budget`、不重复；
        - 不在该行后输出其他文本；
        - 成本意识：建议 3–5 个镜头，越少越好但不丢正确性。
      - 解析 `Shots` 行，忽略 `<think>` 中的数字（支持 `Shots: [...]`、`Shots: 1,2,3`、`Shots - 1 2 3`）。
-   - 规划模式（可选，开启 `enable_action_planning=True`）：
-     - 生成动作式系统提示，引导模型仅输出 JSON 计划（含 `plan`/`budget`/`steps`）。
-     - 支持动作：`peek_scene`、`peek_shot`、`request_hd_frame`、`request_clip_1s`、`request_hd_crop`。
-     - 按 `round1_budget_token` 预算与 `cost_table_token` 价目表进行超预算截断与记账。
-     - 执行动作并产生多模态证据块，供 Round 2 使用。
 3. 过滤/截断镜头选择（选择模式），并限制数量不超过 `max_budget`。
 4. Round 2：
    - 生成细粒度提示或直接使用动作执行得到的证据；
@@ -85,6 +84,7 @@
      - 先在 `<think>` 中缝合 Round 1 思维链与证据；
      - 然后仅输出一行：`Answer: ...`（多选题只输出字母，如 `Answer: B`）。
    - 发送多模态消息给模型，得到最终回答文本。
+   - 若模型未给出可用“微动作”计划，则使用均匀采样帧作为回退证据；该回退证据默认不计入成本（只评模型主动请求的新信息）。
 5. 评测、成本与持久化：
    - 对多选题，解析答案并计算准确率；
    - 从最终回答中抽取 `predicted_letter`/`predicted_option`，与标答比对得到 `reward∈{0,1}`；
@@ -126,16 +126,17 @@ python -m evaluate.evaluate_pipeline \
 - `--model-name`：模型名（传给 OpenAI 兼容接口）。
 - `--no-save-predictions`：不保存每视频预测文件。
 - `--quiet`：安静模式（减少日志）。
+- `--round1-budget-token`：Round‑2 微动作预算（token）。
 
 注意：需要准备好 APIBank 仓库路径（见 `EvalConfig.api_bank_root`），并确保安装了 `openai` 与 `opencv-python` 以启用多模态图片传输。
 
-启用动作式规划（AIF‑V）：在 `evaluate/config.py` 中设置：
+微动作（Round 2 内置规划）相关配置（`evaluate/config.py`）：
 
-- `enable_action_planning=True`
-- `round1_budget_token=20.0`（可调）
-- `cost_table_token` / `cost_table_latency`：价目表（动作→成本）
-- `budgets_token`: K@B 预算列表，例如 `(10.0, 20.0, 30.0, 40.0)`
-- `acc_targets`: C@A 的准确率目标，例如 `(0.6, 0.7, 0.8, 0.9)`
+- `round1_budget_token`：微动作总预算（token 等价）。
+- `long_shot_sec` / `clip_win_sec`：长镜头阈值与子片段窗口。
+- `max_clips_per_shot` / `max_zooms`：每镜头最多窥视子片段数、最多放大次数。
+- `cost_table_token` / `cost_table_latency`：价目表（动作→成本）。
+- `budgets_token` / `acc_targets`：成本指标评估的预算与准确率目标。
 
 ## 结果产物
 
@@ -147,7 +148,7 @@ python -m evaluate.evaluate_pipeline \
     - `predicted_letter` / `predicted_option` / `reward`
     - `budget_limit`: Round 1 选择模式的上限（条数）
     - `costs`: `{ total_token, total_latency, actions:[{act,args,units,cost_*}] }`
-    - `action_plan`: 规划模式下的原始 JSON 计划（否则为 null）
+    - `action_plan`: 规划模式下的原始计划（可能为 JSON 或简洁文本解析后的结构；否则为 null）
     - `executed_actions`: 实际执行的动作列表（否则为 null）
     - `oracle_cost`: 若标注了最小必要证据，可填入理论最小成本（用于 Oracle‑Regret）
 - 汇总指标：`runs/evaluation_cache/metrics_summary.json`
@@ -158,7 +159,11 @@ python -m evaluate.evaluate_pipeline \
 
 - Round 1 选择模式：强约束 `Shots: [...]` 行（支持无括号/短横线变体），解析优先取最后一次出现；忽略 `<think>` 内数字。
 - Round 2：答案必须为单行 `Answer: X`（多选仅输出字母）。
-- 规划模式：仅输出一个 JSON 对象（可置于 ```json fenced block 内）；系统会按 schema 校验与预算截断。
+- 微动作规划：输出“简洁文本”计划（或 JSON）。简洁文本格式：
+  - `Plan: <一句话>`
+  - `Budget: <数字>`
+  - `Steps:` 后每行一个动作，如 `peek_shot shot_id=3`、`request_hd_frame shot_id=3 frame=120`、`request_hd_crop shot_id=2 frame=100 bbox=[0.2,0.3,0.5,0.8]`。
+  - 系统通过正则抽取动作与参数，并按预算与合法性校验、截断。
 - ROI 放大：使用 `request_hd_crop(shot_id, frame, bbox=[x1,y1,x2,y2])`，bbox 为归一化坐标。
 
 ## 扩展建议
@@ -168,6 +173,7 @@ python -m evaluate.evaluate_pipeline \
 - 提示词/帧采样：
   - 调整 Round 2 每镜头帧数：`media.evenly_spaced_frames(k)`。
   - 调整提示词模板：修改 `prompt_generator.py` 或在 pipeline 中更换生成器。
+  - Temporal clips：通过配置 `long_shot_sec`、`clip_win_sec` 控制长镜头的拆分与剪裁窗口；`max_clips_per_shot` 与 `max_zooms` 控制动作上限。
 - 中间结果格式：如需导出 CSV 或追加更多诊断信号，可在 `evaluate_pipeline.py` 的写入逻辑上扩展。
  - 场景层级（L0）/索引产物：可新增 `scene_index.py` 生成 `index.json`（scene→shots）、`shots.csv`（起止/摘要/关键帧戳）与 `frames/`（懒加载）。目前 `peek_scene` 以 shot 映射占位。
 

@@ -4,6 +4,7 @@ import argparse
 import json
 import time
 from dataclasses import dataclass
+import re
 from pathlib import Path
 from typing import Dict, List, Mapping, Optional
 
@@ -30,6 +31,8 @@ class ServerConfig:
     min_shots: int = 0
     max_shots: int = 1_000_000
     stage2_max_frames: int = 128
+    # Optional regex for filtering videos by question text (case-insensitive)
+    question_filter: Optional[str] = None
 
 
 CFG = ServerConfig(
@@ -107,6 +110,14 @@ def index() -> Response:
 def videos() -> Response:
     files = _list_shots_files(CFG.shots_root)
     items = []
+    # Load questions once for filtering
+    qmap = _load_questions(CFG.question_file)
+    pat = None
+    if CFG.question_filter:
+        try:
+            pat = re.compile(str(CFG.question_filter), flags=re.IGNORECASE)
+        except re.error:
+            pat = None
     for f in files:
         try:
             j = read_json(f)
@@ -114,8 +125,14 @@ def videos() -> Response:
             continue
         vid = j.get("video_name") or Path(j.get("video", "")).stem or f.parent.name
         nshots = len(j.get("shots", []) or [])
-        if CFG.min_shots <= nshots <= CFG.max_shots:
-            items.append({"video_id": str(vid), "shots_path": str(f), "shots_count": nshots})
+        if not (CFG.min_shots <= nshots <= CFG.max_shots):
+            continue
+        # Question filter
+        if pat is not None:
+            qlist = qmap.get(str(vid), [])
+            if not any(pat.search(str(q.get("question", ""))) for q in qlist):
+                continue
+        items.append({"video_id": str(vid), "shots_path": str(f), "shots_count": nshots})
     return render_template("videos.html", items=items)
 
 
@@ -279,8 +296,10 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--min-shots", type=int, default=0, help="Filter: min number of shots (inclusive)")
     p.add_argument("--max-shots", type=int, default=1000000, help="Filter: max number of shots (inclusive)")
     p.add_argument("--stage2-max-frames", type=int, default=128, help="Stage-2 total max frames to distribute across selected shots")
+    p.add_argument("--filter-why", action="store_true", help="Only list videos whose question contains 'why' or '为什么'.")
+    p.add_argument("--question-contains", type=str, default=None, help="Regex to filter videos by question text (case-insensitive). Overrides --filter-why if provided.")
     p.add_argument("--host", type=str, default="127.0.0.1")
-    p.add_argument("--port", type=int, default=5000)
+    p.add_argument("--port", type=int, default=8000)
     p.add_argument("--debug", action="store_true")
     return p.parse_args()
 
@@ -293,6 +312,13 @@ def main() -> None:
     CFG.min_shots = int(args.min_shots)
     CFG.max_shots = int(args.max_shots)
     CFG.stage2_max_frames = int(args.stage2_max_frames)
+    # Configure question filter
+    if args.question_contains:
+        CFG.question_filter = str(args.question_contains)
+    elif args.filter_why:
+        CFG.question_filter = r"(why|为什么)"
+    else:
+        CFG.question_filter = None
     app.run(host=args.host, port=args.port, debug=args.debug)
 
 

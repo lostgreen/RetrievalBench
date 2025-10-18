@@ -12,6 +12,8 @@ class EvalConfig:
     """Runtime parameters for evaluation."""
 
     shots_root: Path = Path("output/videomme_batch")
+    # Ground-truth directory (per-video JSON: annotation/gt/{video_id}.json)
+    gt_dir: Path = Path("annotation/gt")
     api_bank_root: Path = Path("/data4/zgw/APIBank")
     model_name: str = "gemini-2.0-flash-lite"
     cache_dir: Path = Path("runs/evaluation_cache")
@@ -25,25 +27,35 @@ class EvalConfig:
     request_timeout: int = 30
     save_predictions: bool = True
     predictions_dir: Path = Path("runs/evaluation_predictions")
-    # Enable action-planning (AIF-V) round-1 with explicit actions under budget
-    enable_action_planning: bool = False
+    # Budget for micro-actions (Round 2 planning within selected shots)
     round1_budget_token: float = 20.0
+    # Temporal clip settings for long shots
+    long_shot_sec: float = 20.0
+    clip_win_sec: float = 5.0
+    max_clips_per_shot: int = 3
+    max_zooms: int = 1
     # Cost model
     cost_table_token: Mapping[str, float] = field(
         default_factory=lambda: {
+            "overview": 0.0,
             "peek_scene": 1.0,
             "peek_shot": 0.5,
+            "peek_clip": 1.0,
             "request_hd_frame": 5.0,
             "request_clip_1s": 15.0,
+            "zoom_hd": 4.0,
             "answer": 0.5,
         }
     )
     cost_table_latency: Mapping[str, float] = field(
         default_factory=lambda: {
+            "overview": 0.0,
             "peek_scene": 1.0,
             "peek_shot": 0.5,
+            "peek_clip": 1.0,
             "request_hd_frame": 5.0,
             "request_clip_1s": 15.0,
+            "zoom_hd": 4.0,
             "answer": 0.5,
         }
     )
